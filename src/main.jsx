@@ -11,7 +11,7 @@ import Point from './Layout/point.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
-import AllProducts from './pages/Allproducts.jsx';
+import AllProducts from './pages/AllProducts.jsx';
 import AddProduct from './pages/Addproduts.jsx';
 import UpdateProduct from './pages/UpdateProduct.jsx';
 import DeleteProduct from './pages/DeleteProduct.jsx';
