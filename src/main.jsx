@@ -8,17 +8,17 @@ import {
 
 // Layout and Page Imports
 import Point from './Layout/point.jsx';
-import Home from './pages/Home/Home/Home.jsx';
-import Login from './pages/Login/Login/Login.jsx';
-import Signup from './pages/Signup/Signup/Signup.jsx';
-import AllProducts from './pages/AllProduct/Allproduct/Allproducts.jsx';
-import AddProduct from './pages/AddProduts/AddProduts/Addproduts.jsx';
-import UpdateProduct from './pages/UpdateProduct/UpdateProduct/UpdateProduct.jsx';
-import DeleteProduct from './pages/DeleteProduct/DeleteProduct/DeleteProduct.jsx';
-import NotificationPage from './pages/Notification/Notification/Notification.jsx';
+import Home from './pages/Home.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import AllProducts from './pages/Allproducts.jsx';
+import AddProduct from './pages/Addproduts.jsx';
+import UpdateProduct from './pages/UpdateProduct.jsx';
+import DeleteProduct from './pages/DeleteProduct.jsx';
+import NotificationPage from './pages/Notification.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
-import ForgotPassword from './pages/Forgot/Forgot/Forgot.jsx';
-import ResetPassword from './pages/ResetPasswordPage/ResetPasswordPage/ResetPassword.jsx';
+import ForgotPassword from './pages/Forgot.jsx';
+import ResetPassword from './pages/ResetPassword.jsx';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 const router = createBrowserRouter([
   {

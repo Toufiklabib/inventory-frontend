@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa'; 
-import { AuthContext } from '../../../Context/NotificationContext/AuthContext';
+import { AuthContext } from '../Context/NotificationContext/AuthContext';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {

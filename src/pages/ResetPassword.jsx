@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
-import auth from '../../../firebase/firebase.config';
+import auth from '../firebase/firebase.config';
 import toast from 'react-hot-toast';
 import { FiSave } from 'react-icons/fi';
 

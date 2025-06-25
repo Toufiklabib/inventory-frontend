@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../pages/Header/Header/Header';
+import Navbar from '../pages/Header';
 import { Toaster } from 'react-hot-toast';
 import { NotificationProvider } from '../../src/Context/NotificationContext/NotificationContext';
 import { AuthProvider } from '../Context/NotificationContext/AuthContext';

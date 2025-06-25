@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'; // <-- useContext ইম্পোর্ট করুন
+import React, { useState, useContext } from 'react'; 
 import toast from 'react-hot-toast';
 import { FiSearch, FiTrash2 } from 'react-icons/fi';
-import { NotificationContext } from '../../../Context/NotificationContext/NotificationContext'; // <-- NotificationContext ইম্পোর্ট করুন
+import { NotificationContext } from '../Context/NotificationContext/NotificationContext'; 
 
-import api from '../../../api/api';
+import api from '../api/api';
 const DeleteProduct = () => {
     const { addNotification } = useContext(NotificationContext);
     const [searchTerm, setSearchTerm] = useState('');

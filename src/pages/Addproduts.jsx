@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'; 
 import toast from 'react-hot-toast';
 import { FiPlusCircle } from 'react-icons/fi';
-import { NotificationContext } from '../../../Context/NotificationContext/NotificationContext'; 
-import api from "../../../api/api";
+import { NotificationContext } from '../Context/NotificationContext/NotificationContext'; 
+import api from "../api/api";
 
 const AddProduct = () => {
 
@@ -102,4 +102,5 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddProduct; 
+

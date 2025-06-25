@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'; // <-- useContext ইম্পোর্ট করুন
 import toast from 'react-hot-toast';
 import { FiSave, FiSearch } from 'react-icons/fi';
-import { NotificationContext } from '../../../Context/NotificationContext/NotificationContext'; // <-- NotificationContext ইম্পোর্ট করুন
-import api from '../../../api/api'; 
+import { NotificationContext } from '../Context/NotificationContext/NotificationContext'; 
+import api from '../api/api'; 
 const UpdateProduct = () => {
     const { addNotification } = useContext(NotificationContext);
     const [searchTerm, setSearchTerm] = useState('');
