@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'; // <-- useContext ইম্পোর্ট করুন
+import { useContext, useEffect, useState } from 'react'; // Import useContext
 import toast from 'react-hot-toast';
 import { FiSave, FiSearch } from 'react-icons/fi';
-import { NotificationContext } from '../Context/NotificationContext/NotificationContext'; 
-import api from '../api/api'; 
+import { NotificationContext } from '../Context/NotificationContext/NotificationContext';
+import api from '../api/api';
 const UpdateProduct = () => {
     const { addNotification } = useContext(NotificationContext);
     const [searchTerm, setSearchTerm] = useState('');
@@ -11,7 +11,7 @@ const UpdateProduct = () => {
     const [error, setError] = useState('');
     const [searchLoading, setSearchLoading] = useState(false);
 
-  
+
     useEffect(() => {
         if (productToUpdate) {
             setFormData({
@@ -22,7 +22,7 @@ const UpdateProduct = () => {
         }
     }, [productToUpdate]);
 
-  
+
     const handleSearch = (e) => {
         e.preventDefault();
         setError('');
@@ -60,11 +60,11 @@ const UpdateProduct = () => {
         setFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-   
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const id = productToUpdate._id;
-        
+
         api.patch(`/products/${id}`, formData)
             .then(response => {
                 if (response.data.modifiedCount > 0) {

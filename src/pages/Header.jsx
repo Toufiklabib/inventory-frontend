@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa'; 
-import { AuthContext } from '../Context/NotificationContext/AuthContext';
+import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/NotificationContext/AuthContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,27 +28,27 @@ const Navbar = () => {
         setIsOpen(false);
     };
 
-    // ইউজার লগইন করা থাকলে দেখানোর জন্য কম্পোনেন্ট
+    // Component to display when user is logged in
     const loggedInUserMenu = (
         <div className="flex items-center space-x-4">
-            {/* প্রোফাইল আইকন এবং টুলটিপ */}
+            {/* Profile icon and tooltip */}
             <div className="relative group">
                 <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center cursor-pointer ring-2 ring-slate-500 group-hover:ring-blue-500 transition-all">
                     <FaUserCircle className="text-white text-2xl" />
                 </div>
-                {/* হোভার করলে ইমেইল দেখানোর জন্য টুলটিপ */}
+                {/* Tooltip to show email on hover */}
                 <div className="absolute top-full right-0 mt-2 w-max bg-slate-700 text-white text-sm rounded-md px-3 py-1 scale-0 group-hover:scale-100 transition-transform origin-top-right z-50">
                     {user?.email}
                 </div>
             </div>
-            {/* লগআউট বাটন */}
+            {/* Logout button */}
             <button onClick={handleLogout} className="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700">
                 Logout
             </button>
         </div>
     );
 
-    // লগইন করা না থাকলে দেখানোর জন্য কম্পোনেন্ট
+    // Component to display when user is not logged in
     const loggedOutUserMenu = (
         <NavLink to="/login" className="text-gray-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}>
             Login
@@ -60,7 +60,7 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
-                        <Link to="/" className="text-2xl font-bold text-white">MyApp</Link>
+                        <Link to="/" className="text-2xl font-bold text-white">Inventory</Link>
                     </div>
 
                     {/* Desktop Menu */}
@@ -68,8 +68,8 @@ const Navbar = () => {
                         <div className="ml-10 flex items-center space-x-4">
                             <NavLink to="/" className="text-gray-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}>Home</NavLink>
                             {user && <NavLink to="/allproduct" className="text-gray-300 hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" style={({ isActive }) => (isActive ? activeLinkStyle : undefined)}>Products</NavLink>}
-                            
-                            {/* শর্তসাপেক্ষে মেনু দেখানো হবে */}
+
+                            {/* Conditionally display menu */}
                             {user ? loggedInUserMenu : loggedOutUserMenu}
                         </div>
                     </div>
@@ -90,7 +90,7 @@ const Navbar = () => {
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <NavLink to="/" className="text-gray-300 hover:bg-slate-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsOpen(false)}>Home</NavLink>
                         {user && <NavLink to="/allproduct" className="text-gray-300 hover:bg-slate-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" onClick={() => setIsOpen(false)}>Products</NavLink>}
-                        
+
                         <div className="border-t border-slate-700 my-2"></div>
 
                         {user ? (

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { FiArchive, FiBox, FiHash, FiMinusCircle, FiSearch, FiTag } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import api from '../api/api';
-import toast from 'react-hot-toast';
 import { NotificationContext } from '../Context/NotificationContext/NotificationContext';
-import { FiArchive, FiMinusCircle, FiSearch, FiBox, FiTag, FiHash } from 'react-icons/fi';
 
 const AllProducts = () => {
     const { addNotification } = useContext(NotificationContext);
@@ -11,7 +11,7 @@ const AllProducts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [decreaseAmounts, setDecreaseAmounts] = useState({});
-    
+
 
     const [search, setSearch] = useState('');
 
@@ -54,18 +54,18 @@ const AllProducts = () => {
             })
             .catch(() => toast.error('Stock update failed.'));
     };
-    
+
     const handleInputChange = (productId, value) => {
         const numValue = value === '' ? '' : Math.max(0, parseInt(value, 10));
         setDecreaseAmounts({ ...decreaseAmounts, [productId]: numValue });
     };
 
-    // সার্চ ইনপুটের জন্য হ্যান্ডলার
+    // Handler for search input
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
     };
 
-    // সার্চ টার্ম দিয়ে প্রোডাক্ট ফিল্টার করা
+    // Filter products by search term
     const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||
         product.p_id.toString().includes(search) ||
@@ -83,7 +83,7 @@ const AllProducts = () => {
                 </div>
             </header>
             <main className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                {/* সার্চ বার সেকশনটি আবার যোগ করা হয়েছে */}
+                {/* Search bar section added */}
                 <div className="mb-8">
                     <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -108,7 +108,7 @@ const AllProducts = () => {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {/* এখন filteredProducts ম্যাপ করা হচ্ছে */}
+                        {/* Now mapping filteredProducts */}
                         {filteredProducts.map((product) => (
                             <div key={product._id} className="bg-slate-800 rounded-lg shadow-lg flex flex-col justify-between">
                                 <div className="p-6">

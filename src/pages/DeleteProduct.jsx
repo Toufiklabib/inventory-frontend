@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react'; 
+import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FiSearch, FiTrash2 } from 'react-icons/fi';
-import { NotificationContext } from '../Context/NotificationContext/NotificationContext'; 
+import { NotificationContext } from '../Context/NotificationContext/NotificationContext';
 
 import api from '../api/api';
 const DeleteProduct = () => {
@@ -11,7 +11,7 @@ const DeleteProduct = () => {
     const [error, setError] = useState('');
     const [searchLoading, setSearchLoading] = useState(false);
 
-    // প্রোডাক্ট সার্চ করার ফাংশন
+    // Function to search for product
     const handleSearch = (e) => {
         e.preventDefault();
         setError('');
@@ -42,24 +42,24 @@ const DeleteProduct = () => {
                 setSearchLoading(false);
             });
     };
-    
-    // প্রোডাক্ট ডিলিট করার ফাংশন
+
+    // Function to delete product
     const handleDelete = () => {
         if (!productToDelete) return;
 
-        // ডিলিট করার আগে ব্যবহারকারীকে সতর্ক করা
+        // Alert user before deleting
         if (window.confirm(`Are you sure you want to delete "${productToDelete.name}"? This action cannot be undone.`)) {
             const id = productToDelete._id;
 
-            // axios দিয়ে DELETE রিকোয়েস্ট পাঠানো
+            // Send DELETE request using axios
             api.delete(`/products/${id}`)
                 .then(response => {
-                    // সফলভাবে ডিলিট হয়েছে কিনা তা রেসপন্স থেকে চেক করা
+                    // Check from response if successfully deleted
                     if (response.data.deletedCount > 0) {
                         toast.success('Product deleted successfully!');
                         addNotification(`Product deleted: ${productToDelete.name}`);
-                        
-                        // UI থেকে প্রোডাক্টটি সরানোর জন্য স্টেট রিসেট করা
+
+                        // Reset state to remove product from UI
                         setProductToDelete(null);
                         setSearchTerm('');
                     } else {
@@ -99,7 +99,7 @@ const DeleteProduct = () => {
                             className="inline-flex items-center justify-center px-5 py-2 border border-transparent font-medium rounded-md text-white bg-red-600 hover:bg-red-700 disabled:bg-slate-500"
                             disabled={searchLoading}
                         >
-                             {searchLoading ? 'Searching...' : <><FiSearch className="mr-2" /> Search</>}
+                            {searchLoading ? 'Searching...' : <><FiSearch className="mr-2" /> Search</>}
                         </button>
                     </form>
                     {error && <p className="text-red-500 text-sm mt-4">{error}</p>}

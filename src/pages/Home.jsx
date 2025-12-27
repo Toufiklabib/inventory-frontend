@@ -1,6 +1,5 @@
 // src/pages/Home.jsx
-import React from 'react';
-import { FaBell, FaBox, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaBell, FaBox, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -39,16 +38,16 @@ const Home = () => {
             title="Add Product"
           />
 
-          {/* Update Product Section - এখন এটি All Products পেজে লিঙ্ক করা */}
+          {/* Update Product Section - Now linked to Update Product page */}
           <DashboardCard
             to="/update-product"
             icon={<FaEdit />}
             title="Update Product"
           />
 
-          {/* Delete Product Section - এটিও All Products পেজে লিঙ্ক করা যেতে পারে */}
+          {/* Delete Product Section - Can also be linked to All Products page */}
           <DashboardCard
-            to="/delete-product" // <-- "/delete-product" এর পরিবর্তে
+            to="/delete-product" // Instead of "/delete-product"
             icon={<FaTrash />}
             title="Delete Product"
           />
