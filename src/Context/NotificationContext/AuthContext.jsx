@@ -1,11 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    onAuthStateChanged, 
-    signOut,
-    sendPasswordResetEmail 
+import {
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signOut
 } from "firebase/auth";
+import { createContext, useEffect, useRef, useState } from 'react';
 import auth from '../../../src/firebase/firebase.config';
 
 export const AuthContext = createContext();
@@ -13,10 +13,23 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const isSigningUp = useRef(false);
 
-    const createUser = (email, password) => {
+    const createUser = async (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        isSigningUp.current = true;
+        try {
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            // Immediately logout after signup
+            await signOut(auth);
+            isSigningUp.current = false;
+            setLoading(false);
+            return result;
+        } catch (error) {
+            isSigningUp.current = false;
+            setLoading(false);
+            throw error;
+        }
     };
 
     const signIn = (email, password) => {
@@ -29,18 +42,21 @@ export const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
 
-    
+
     const resetPassword = (email) => {
-        setLoading(true); 
+        setLoading(true);
         return sendPasswordResetEmail(auth, email);
     };
- 
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            setLoading(false);
+            // Don't update user state during signup process
+            if (!isSigningUp.current) {
+                setUser(currentUser);
+                setLoading(false);
+            }
         });
-        return () => unsubscribe(); 
+        return () => unsubscribe();
     }, []);
 
     const authInfo = {
@@ -49,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         logOut,
-        resetPassword 
+        resetPassword
     };
 
     return (

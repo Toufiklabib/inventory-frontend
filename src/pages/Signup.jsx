@@ -1,30 +1,30 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/NotificationContext/AuthContext';
-import toast from 'react-hot-toast';
 
 const Signup = () => {
     const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        createUser(email, password)
-            .then(() => {
-                toast.success('Signup successful!');
-                navigate('/login');
-            })
-            .catch(error => {
-                toast.error(error.message);
-            });
+        try {
+            await createUser(email, password);
+            toast.success('Account created! Please login.');
+            form.reset();
+            navigate('/login');
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
     return (
-     
+
         <div className="max-w-md mx-auto my-10 bg-slate-800 p-8 rounded-lg">
             <h2 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h2>
             <form onSubmit={handleSignup}>
